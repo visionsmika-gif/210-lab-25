@@ -11,6 +11,7 @@ using namespace std;
 using namespace std::chrono;
 
 const string FILE_NAME = "codes.txt";
+const string INSERT_VALUE = "TESTCODE";
 
 long long readVector(vector<string>& myVector);
 long long readList(list<string>& myList);
@@ -19,6 +20,10 @@ long long readSet(set<string>& mySet);
 long long sortVector(vector<string>& myVector);
 long long sortList(list<string>& myList);
 long long sortSet(set<string>& mySet);
+
+long long insertVector(vector<string>& myVector);
+long long insertList(list<string>& myList);
+long long insertSet(set<string>& mySet);
 
 int main() {
 
@@ -128,11 +133,38 @@ long long readSet(set<string>& mySet) {
 }
 
 long long sortVector(vector<string>& myVector) {
-
+    auto start = high_resolution_clock::now();
+    sort(myVector.begin(), myVector.end()); // <from algorithm>
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
 }
-long long sortList(list<string>& myList);
-long long sortSet(set<string>& mySet);
+long long sortList(list<string>& myList) {
+    auto start = high_resolution_clock::now();
+    myList.sort();      // member function
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
 
+long long sortSet(set<string>& mySet) {
+    return -1;  // sets already sorted
+}
+
+long long insertVector(vector<string>& myVector) {
+    auto middleIt = myVector.begin() + (myVector.size() / 2);
+    auto start = high_resolution_clock::now();
+    myVector.insert(middleIt, INSERT_VALUE);
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
+
+long long insertList(list<string>& myList) {
+    auto middleIt = myList.begin() + (myList.size() / 2);
+    auto start = high_resolution_clock::now();
+    myVector.insert(middleIt, INSERT_VALUE);
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
+long long insertSet(set<string>& mySet);
 
 /* syntax examples:
 auto start = high_resolution_clock::now()
