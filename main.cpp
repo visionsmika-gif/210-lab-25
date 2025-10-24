@@ -1,3 +1,6 @@
+// COMSC-210 | Lab 25 | Mika Aquino
+// IDE used: Visual Studio 2022
+
 #include <iostream>
 #include <chrono>
 #include <vector>
@@ -5,7 +8,7 @@
 #include <set>
 #include <fstream>
 #include <string>
-#include <algorithm>    // For sort() and advance()
+#include <algorithm>
 #include <iomanip>
 
 using namespace std;
@@ -15,18 +18,22 @@ const string FILE_NAME = "codes.txt";
 const string INSERT_VALUE = "TESTCODE";
 const int PRINT_WIDTH = 15;
 
+// Functions for RACE 1: Reading
 long long readVector(vector<string>& myVector);
 long long readList(list<string>& myList);
 long long readSet(set<string>& mySet);
 
+// Functions for RACE 2: Sorting
 long long sortVector(vector<string>& myVector);
 long long sortList(list<string>& myList);
 long long sortSet(set<string>& mySet);
 
+// Functions for RACE 3: Inserting
 long long insertVector(vector<string>& myVector);
 long long insertList(list<string>& myList);
 long long insertSet(set<string>& mySet);
 
+// Functions for RACE 4: Deleting
 long long deleteVector(vector<string>& myVector);
 long long deleteList(list<string>& myList);
 long long deleteSet(set<string>& mySet);
@@ -69,7 +76,6 @@ int main() {
 
     return 0;
 }
-
 
 // Function to return the time it takes to read elements from a file into a vector.
 // Args:    a vector
