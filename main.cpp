@@ -16,7 +16,7 @@ using namespace std::chrono;
 
 const string FILE_NAME = "codes.txt";
 const string INSERT_VALUE = "TESTCODE";
-const int PRINT_WIDTH = 15;
+const int PRINT_WIDTH = 10;
 
 // Functions for RACE 1: Reading
 long long readVector(vector<string>& myVector);
@@ -63,13 +63,13 @@ int main() {
          << setw(PRINT_WIDTH) << sortSet(mySet) << "\n";
 
     // RACE 3: Inserting
-    cout << setw(PRINT_WIDTH) << "Inserting"
+    cout << setw(PRINT_WIDTH) << "Insert"
          << setw(PRINT_WIDTH) << insertVector(myVector)
          << setw(PRINT_WIDTH) << insertList(myList)
          << setw(PRINT_WIDTH) << insertSet(mySet) << "\n";
 
     // RACE 4: Deleting
-    cout << setw(PRINT_WIDTH) << "Deleting"
+    cout << setw(PRINT_WIDTH) << "Delete"
          << setw(PRINT_WIDTH) << deleteVector(myVector)
          << setw(PRINT_WIDTH) << deleteList(myList)
          << setw(PRINT_WIDTH) << deleteSet(mySet) << "\n";
