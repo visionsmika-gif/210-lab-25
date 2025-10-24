@@ -30,7 +30,6 @@ long long deleteList(list<string>& myList);
 long long deleteSet(set<string>& mySet);
 
 int main() {
-
     // Data structures to compete in the race
     vector<string> myVector;
     list<string> myList;
@@ -59,6 +58,10 @@ int main() {
     return 0;
 }
 
+
+// Function to return the time it takes to read elements from a file into a vector.
+// Args:    a vector
+// Returns: time in microseconds
 long long readVector(vector<string>& myVector) {
     // Open the file
     ifstream file(FILE_NAME);
@@ -86,6 +89,9 @@ long long readVector(vector<string>& myVector) {
     return (duration_cast<microseconds>(end - start)).count();
 }
 
+// Function to return the time it takes to read elements from a file into a list.
+// Args:    a list
+// Returns: time in microseconds
 long long readList(list<string>& myList) {
     // Open the file
     ifstream file(FILE_NAME);
@@ -113,6 +119,9 @@ long long readList(list<string>& myList) {
     return (duration_cast<microseconds>(end - start)).count();
 }
 
+// Function to return the time it takes to read elements from a file into a set.
+// Args:    a set
+// Returns: time in microseconds
 long long readSet(set<string>& mySet) {
     // Open the file
     ifstream file(FILE_NAME);
@@ -140,21 +149,45 @@ long long readSet(set<string>& mySet) {
     return (duration_cast<microseconds>(end - start)).count();
 }
 
+// Function to return the time it takes to sort a vector.
+// Args:    a vector
+// Returns: time in microseconds
 long long sortVector(vector<string>& myVector) {
+    // Begin timing
     auto start = high_resolution_clock::now();
-    sort(myVector.begin(), myVector.end()); // <from algorithm>
+
+    // Sort vector
+    sort(myVector.begin(), myVector.end());
+
+    // End timing
     auto end = high_resolution_clock::now();
-    return (duration_cast<microseconds>(end - start)).count();
-}
-long long sortList(list<string>& myList) {
-    auto start = high_resolution_clock::now();
-    myList.sort();      // member function
-    auto end = high_resolution_clock::now();
+
+    // Return time result
     return (duration_cast<microseconds>(end - start)).count();
 }
 
+// Function to return the time it takes to sort a list.
+// Args:    a list
+// Returns: time in microseconds
+long long sortList(list<string>& myList) {
+    // Begin timing
+    auto start = high_resolution_clock::now();
+
+    // Sort list
+    myList.sort();
+
+    // End timing
+    auto end = high_resolution_clock::now();
+
+    // Return time result
+    return (duration_cast<microseconds>(end - start)).count();
+}
+
+// Function to return the time it takes to sort a set.
+// Args:    a vector
+// Returns: -1 (because a set is already sorted)
 long long sortSet(set<string>& mySet) {
-    return -1;  // sets already sorted
+    return -1;
 }
 
 long long insertVector(vector<string>& myVector) {
