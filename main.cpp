@@ -6,12 +6,14 @@
 #include <fstream>
 #include <string>
 #include <algorithm>    // For sort() and advance()
+#include <iomanip>
 
 using namespace std;
 using namespace std::chrono;
 
 const string FILE_NAME = "codes.txt";
 const string INSERT_VALUE = "TESTCODE";
+const int PRINT_WIDTH = 15;
 
 long long readVector(vector<string>& myVector);
 long long readList(list<string>& myList);
@@ -35,25 +37,35 @@ int main() {
     list<string> myList;
     set<string> mySet;
 
-    cout << "Reading race:\n";
-    cout << readVector(myVector) << "\n";
-    cout << readList(myList) << "\n";
-    cout << readSet(mySet) << "\n";
+    // Print header
+    cout << setw(PRINT_WIDTH) << "Operation"
+         << setw(PRINT_WIDTH) << "Vector"
+         << setw(PRINT_WIDTH) << "List"
+         << setw(PRINT_WIDTH) << "Set" << "\n";
 
-    cout << "Sorting race:\n";
-    cout << sortVector(myVector) << "\n";
-    cout << sortList(myList) << "\n";
-    cout << sortSet(mySet) << "\n";
+    // RACE 1: Reading
+    cout << setw(PRINT_WIDTH) << "Read"
+         << setw(PRINT_WIDTH) << readVector(myVector)
+         << setw(PRINT_WIDTH) << readList(myList)
+         << setw(PRINT_WIDTH) << readSet(mySet) << "\n";
 
-    cout << "Inserting race:\n";
-    cout << insertVector(myVector) << "\n";
-    cout << insertList(myList) << "\n";
-    cout << insertSet(mySet) << "\n";
+    // RACE 2: Sorting
+    cout << setw(PRINT_WIDTH) << "Sort"
+         << setw(PRINT_WIDTH) << sortVector(myVector)
+         << setw(PRINT_WIDTH) << sortList(myList)
+         << setw(PRINT_WIDTH) << sortSet(mySet) << "\n";
 
-    cout << "Deleting race:\n";
-    cout << deleteVector(myVector) << "\n";
-    cout << deleteList(myList) << "\n";
-    cout << deleteSet(mySet) << "\n";
+    // RACE 3: Inserting
+    cout << setw(PRINT_WIDTH) << "Inserting"
+         << setw(PRINT_WIDTH) << insertVector(myVector)
+         << setw(PRINT_WIDTH) << insertList(myList)
+         << setw(PRINT_WIDTH) << insertSet(mySet) << "\n";
+
+    // RACE 4: Deleting
+    cout << setw(PRINT_WIDTH) << "Deleting"
+         << setw(PRINT_WIDTH) << deleteVector(myVector)
+         << setw(PRINT_WIDTH) << deleteList(myList)
+         << setw(PRINT_WIDTH) << deleteSet(mySet) << "\n";
 
     return 0;
 }
@@ -243,10 +255,3 @@ long long deleteSet(set<string>& mySet) {
     auto end = high_resolution_clock::now();                    // End timing
     return (duration_cast<microseconds>(end - start)).count();  // Return time result
 }
-
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
-*/
