@@ -83,7 +83,7 @@ long long readVector(vector<string>& myVector) {
     file.close();
 
     // Return time result
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long readList(list<string>& myList) {
@@ -110,7 +110,7 @@ long long readList(list<string>& myList) {
     file.close();
 
     // Return time result
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long readSet(set<string>& mySet) {
@@ -137,20 +137,20 @@ long long readSet(set<string>& mySet) {
     file.close();
 
     // Return time result
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long sortVector(vector<string>& myVector) {
     auto start = high_resolution_clock::now();
     sort(myVector.begin(), myVector.end()); // <from algorithm>
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 long long sortList(list<string>& myList) {
     auto start = high_resolution_clock::now();
     myList.sort();      // member function
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long sortSet(set<string>& mySet) {
@@ -158,52 +158,57 @@ long long sortSet(set<string>& mySet) {
 }
 
 long long insertVector(vector<string>& myVector) {
-    auto middleIt = myVector.begin() + (myVector.size() / 2);
     auto start = high_resolution_clock::now();
+    auto middleIt = myVector.begin() + (myVector.size() / 2);
+
     myVector.insert(middleIt, INSERT_VALUE);
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long insertList(list<string>& myList) {
+    auto start = high_resolution_clock::now();
     auto middleIt = myList.begin();
     advance(middleIt, (myList.size() / 2)); // Use advance because list is not contiguous
-    auto start = high_resolution_clock::now();
+
     myList.insert(middleIt, INSERT_VALUE);
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 long long insertSet(set<string>& mySet) {
     auto start = high_resolution_clock::now();
     mySet.insert(INSERT_VALUE); // not sequenced
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long deleteVector(vector<string>& myVector) {
-    auto middleIt = myVector.begin() + (myVector.size() / 2);
     auto start = high_resolution_clock::now();
+    auto middleIt = myVector.begin() + (myVector.size() / 2);
+
     myVector.erase(middleIt);
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long deleteList(list<string>& myList) {
+    auto start = high_resolution_clock::now();
     auto middleIt = myList.begin();
     advance(middleIt, (myList.size() / 2)); // Use advance because list is not contiguous
-    auto start = high_resolution_clock::now();
+
     myList.erase(middleIt);
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 long long deleteSet(set<string>& mySet) {
+    auto start = high_resolution_clock::now();
     auto middleIt = mySet.begin();
     advance(middleIt, (mySet.size() / 2)); // Use advance because list is not contiguous
-    auto start = high_resolution_clock::now();
+
     mySet.erase(middleIt);
     auto end = high_resolution_clock::now();
-    return (duration_cast<milliseconds>(end - start)).count();
+    return (duration_cast<microseconds>(end - start)).count();
 }
 
 /* syntax examples:
