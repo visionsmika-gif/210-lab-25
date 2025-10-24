@@ -5,7 +5,7 @@
 #include <set>
 #include <fstream>
 #include <string>
-#include <algorithm>    // For sort()
+#include <algorithm>    // For sort() and advance()
 
 using namespace std;
 using namespace std::chrono;
@@ -25,6 +25,10 @@ long long insertVector(vector<string>& myVector);
 long long insertList(list<string>& myList);
 long long insertSet(set<string>& mySet);
 
+long long deleteVector(vector<string>& myVector);
+long long deleteList(list<string>& myList);
+long long deleteSet(set<string>& mySet);
+
 int main() {
 
     // Data structures to compete in the race
@@ -32,7 +36,6 @@ int main() {
     list<string> myList;
     set<string> mySet;
 
-    // TODO: fix formatting output
     cout << "Reading race:\n";
     cout << readVector(myVector) << "\n";
     cout << readList(myList) << "\n";
@@ -43,10 +46,15 @@ int main() {
     cout << sortList(myList) << "\n";
     cout << sortSet(mySet) << "\n";
 
+    cout << "Inserting race:\n";
+    cout << insertVector(myVector) << "\n";
+    cout << insertList(myList) << "\n";
+    cout << insertSet(mySet) << "\n";
 
-
-
-
+    cout << "Deleting race:\n";
+    cout << deleteVector(myVector) << "\n";
+    cout << deleteList(myList) << "\n";
+    cout << deleteSet(mySet) << "\n";
 
     return 0;
 }
@@ -158,13 +166,45 @@ long long insertVector(vector<string>& myVector) {
 }
 
 long long insertList(list<string>& myList) {
-    auto middleIt = myList.begin() + (myList.size() / 2);
+    auto middleIt = myList.begin();
+    advance(middleIt, (myList.size() / 2)); // Use advance because list is not contiguous
     auto start = high_resolution_clock::now();
-    myVector.insert(middleIt, INSERT_VALUE);
+    myList.insert(middleIt, INSERT_VALUE);
     auto end = high_resolution_clock::now();
     return (duration_cast<milliseconds>(end - start)).count();
 }
-long long insertSet(set<string>& mySet);
+long long insertSet(set<string>& mySet) {
+    auto start = high_resolution_clock::now();
+    mySet.insert(INSERT_VALUE); // not sequenced
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
+
+long long deleteVector(vector<string>& myVector) {
+    auto middleIt = myVector.begin() + (myVector.size() / 2);
+    auto start = high_resolution_clock::now();
+    myVector.erase(middleIt);
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
+
+long long deleteList(list<string>& myList) {
+    auto middleIt = myList.begin();
+    advance(middleIt, (myList.size() / 2)); // Use advance because list is not contiguous
+    auto start = high_resolution_clock::now();
+    myList.erase(middleIt);
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
+
+long long deleteSet(set<string>& mySet) {
+    auto middleIt = mySet.begin();
+    advance(middleIt, (mySet.size() / 2)); // Use advance because list is not contiguous
+    auto start = high_resolution_clock::now();
+    mySet.erase(middleIt);
+    auto end = high_resolution_clock::now();
+    return (duration_cast<milliseconds>(end - start)).count();
+}
 
 /* syntax examples:
 auto start = high_resolution_clock::now()
